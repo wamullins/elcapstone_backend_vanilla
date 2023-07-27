@@ -30,7 +30,7 @@ const main = async () => {
             ],
         }),
     ];
-
+    ///
     const climbMap = new Map(climbs.map((clm) => [clm.name, clm._id]));
 
     const features = [
