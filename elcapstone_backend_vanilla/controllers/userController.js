@@ -54,6 +54,17 @@ const getUsers = async (req, res) => {
     }
 };
 
+const getUserEmails = async (req, res) => {
+    try {
+        const users = await User.find({}, { email: 1 });
+        console.log(users);
+        return res.json(users);
+    } catch (e) {
+        console.log(e);
+        return res.send(e.message);
+    }
+};
+
 const deleteUserByID = async (req, res) => {
     try {
         const deletedUser = await User.findByIdAndDelete(req.params.id);
@@ -82,6 +93,7 @@ const updateUserByID = async (req, res) => {
 module.exports = {
     addUser,
     getUsers,
+    getUserEmails,
     getUserByID,
     deleteUserByID,
     updateUserByID,
