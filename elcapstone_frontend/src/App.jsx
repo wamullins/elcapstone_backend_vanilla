@@ -7,6 +7,7 @@ import { Nav } from './components/Nav'
 import { Explorer } from './components/Explorer'
 import { Profile } from './components/Profile'
 import { SignIn } from './components/SignIn'
+import { SignUp } from './components/SignUp' 
 import { SignOut } from './components/SignOut'
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
                     <Route exact path='/features' element={<Explorer />} />
                     <Route exact path='/profile' element={<Profile />}/>
                     <Route exact path='/signin' element={<SignIn/>}/>
+                    <Route exact path='/signup' element={<SignUp/>}/>
                     <Route exact path='/signout' element={<SignOut/>}/>
                 </Routes>
             </div>

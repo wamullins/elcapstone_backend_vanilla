@@ -34,3 +34,36 @@
   font-weight: 100;
 }
 
+.sign-in-route-body, .sign-up-route-body {
+  width: 30%;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ACA9A9;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.sign-in-route-body > input,label, .sign-up-route-body > input,label {
+  width: 90%
+}
+
+.sign-in-route-body > button , .sign-up-route-body > button {
+  width: 50%
+}
+
+.sign-out-route {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ACA9A9;
+  padding: 10px;
+  border-radius: 10px;
+}
+

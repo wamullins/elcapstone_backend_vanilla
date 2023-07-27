@@ -20,7 +20,7 @@ export const SignOut = () => {
     },[username])
    
 
-    return (<>logged out {username}</>)   
+    return (<div className="sign-out-route">Logging Out {username}</div>)   
          
     
    

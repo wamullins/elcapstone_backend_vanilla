@@ -1,16 +1,18 @@
 import { useState, useContext, useEffect } from 'react'
+import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 import LoggedInContext from '../LoggedInContext'
 export const SignIn = () => {
 
     const default_input = {
-        username: '',
+        email: '',
         password: '',
     }
 
 
     const { loggedInUser, setLoggedInUser } = useContext(LoggedInContext)
     const [loginState, setLoginState] = useState(default_input)
+    const navigate = useNavigate();
 
     // useEffect(() => {
     //     const getLoggedInUser = async () => {
@@ -26,35 +28,49 @@ export const SignIn = () => {
         setLoginState({...loginState, [e.target.id]: e.target.value})
     }
 
-    const handleLogin = async () => {
+    const handleLogin = async (e) => {
+        e.preventDefault()
+
         const findUser = async () => {
-            const response = await axios.get(`http://localhost:3001/users?email=${loginState.username}`)
-            if (!response) {
-                const response = await axios.get(`http://localhost:3001/users?name=${loginState.username}`)
+            const response = await axios.get(`http://localhost:3001/users?email=${loginState.email}`)
+            if (!response.data[0]) {
+                console.log("email not found")
+                return
             }
-            const data = response.data
-            console.log(data.name)
-            setLoggedInUser(data)
+            console.log("email found")
+            console.log(response.data[0])
+            if (response.data[0].password === loginState.password) {
+                console.log(`logging in ${response.data[0].name}`)
+                setLoggedInUser(response.data[0])
+                setLoginState(default_input)
+                navigate('/profile')
+                return
+            }
+            console.log("incorrect password")
+            
         }
         findUser()
     }
 
     if (!loggedInUser) {
         return (
-            <form className='login-route-body' onSubmit={handleLogin}>
-                <label htmlFor='username'>Username:</label>
-                <input id='username' type='text' onChange={handleChange} value={loginState.username}/>
-            
-                <label htmlFor='password'>Password:</label>
-                <input id='password' type='password' onChange={handleChange} value={loginState.password}/>
+                <form className='sign-in-route-body' onSubmit={handleLogin}>
+                    <label htmlFor='email'>Email:</label>
+                    <input id='email' type='email' onChange={handleChange} value={loginState.email}/>
                 
-                <button type="submit" onClick={() => navigate('/admin')}>Login</button>
-            </form>
+                    <label htmlFor='password'>Password:</label>
+                    <input id='password' type='password' onChange={handleChange} value={loginState.password}/>
+                    
+                    <button type="submit">Login</button>
+
+                    <div>Don't have an account yet?</div>
+                    <button  onClick={() => navigate('/signup')}>Sign Up!</button>
+                </form>
         )
     }
 
     return (
-        <>Welcome {loggedInUser.name}</>
+        <>Logged in as {loggedInUser.name}</>
     )
 
 }

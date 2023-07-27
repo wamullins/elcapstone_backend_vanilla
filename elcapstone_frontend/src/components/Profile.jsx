@@ -8,6 +8,6 @@ export const Profile = () => {
         return <>No user logged In</>
     }
 
-    return <>Welcome {loggedInUser.name}</>
+    return <>Welcome {loggedInUser.name}!</>
     
 }
