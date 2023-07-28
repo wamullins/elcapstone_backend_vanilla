@@ -3,6 +3,8 @@
   height: 100%;
 }
 
+/* NAV BAR STYLING */
+
 .nav-links {
   position: fixed;
   top: 5%;
@@ -23,6 +25,15 @@
 
 }
 
+/* SIGN IN/UP/OUT BOX FORMATTING */
+
+.sign-in-wrapper {
+  height: 100%;
+  width: 100%;
+  background-image: url('background_1.jpg');
+  background-size:cover;
+}
+
 .home-title {
   font-size: 130px;
   position:fixed;
@@ -34,27 +45,55 @@
   font-weight: 100;
 }
 
-.sign-in-route-body, .sign-up-route-body {
-  width: 30%;
-  position: fixed;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #ACA9A9;
-  padding: 20px;
-  border-radius: 20px;
+.sign-in-form, .sign-up-route-body {
+  background-color: #c9a39c99;
+  width: 100%;
+  padding: 10px;
+  border-radius: 14px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  border: 1px solid black;
 }
 
-.sign-in-route-body > input,label, .sign-up-route-body > input,label {
-  width: 90%
+.sign-in-route-body, .sign-up-route-body {
+  width: 20%;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.sign-in-route-body > button , .sign-up-route-body > button {
-  width: 50%
+.sign-up-link {
+  background-color: #e7d7f350;
+  font-size: 16px;
+  width: 60%;
+  padding: 10px;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px;
+  border: 1px solid black;
+}
+
+.sign-in-form > input,label, .sign-up-route-body > input,label {
+  width: 90%;
+  margin: 1%;
+  border-radius: 5px;
+}
+
+.sign-in-form > button, .sign-up-link > button, .sign-up-route-body > button {
+  width: 30%;
+  min-width: 90px;
+  margin-top: 10px;
+  padding: 3px;
+  border-radius: 5px;
 }
 
 .sign-out-route {
@@ -66,4 +105,47 @@
   padding: 10px;
   border-radius: 10px;
 }
+
+/* PROFILE PAGE STYING */
+
+.profile-wrapper, .sign-out-wrapper {
+  height: 100%;
+  width: 100%;
+  background-image: url('background_2.jpg');
+  background-size:cover;
+}
+
+.profile-route-body {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  width: 90%;
+  transform: translate(-50%);
+  background-color: #D9D9D9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.profile-header {
+  width: 90%;
+  margin-top: 2%;
+  background-color: #ACA9A9;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.personal-best { 
+  width: 30%;
+  margin: 1%;
+  padding: 8px;
+  border-radius: 8px;
+  text-align: center;
+  background-color: #96B3BA;
+}
+
+
 

@@ -10,9 +10,9 @@ export const SignUp = () => {
         confirmPassword: '',
     }
 
-    const [signUpFormState, setSignUpFormState] = useState(default_input)
-    const [signedUpState, setSignedUpState] = useState(false)
-    const [userEmails, setUserEmails] = useState([])
+    const [signUpFormState, setSignUpFormState] = useState(default_input);
+    const [successState, setSuccessState] = useState(false);
+    const [userEmails, setUserEmails] = useState([]);
 
     // get all existing user emails. This will be used in teh handle sign up function
     useEffect(() => {
@@ -34,13 +34,19 @@ export const SignUp = () => {
         // check existing emails and if there is already an account using the email, return here - 
         const existingEmail = userEmails.filter(em => em.email === signUpFormState.email)
         if (existingEmail.length > 0) {
-            console.log("email already in use")
+            alert("email already in use")
+            return
+        }
+
+        // confirm all fields are filled out
+        if (!signUpFormState.name || !signUpFormState.email || !signUpFormState.password || !signUpFormState.confirmPassword) {
+            alert('all fields must be filled in')
             return
         }
 
         // confirm that both passwords match
         if (signUpFormState.password !== signUpFormState.confirmPassword) {
-            console.log("passwords must match")
+            alert("passwords must match")
             return
         }
         
@@ -50,12 +56,13 @@ export const SignUp = () => {
                 gradePB: '',
                 password: signUpFormState.password,
             })
-            setSignedUpState(true)
+            setSuccessState(true)
             console.log("signed up")
     }
 
-    if (!signedUpState) {
+    if (!successState) {
         return (
+            <div className="sign-in-wrapper">
                 <form className='sign-up-route-body' onSubmit={handleSignUp}>
                     <label htmlFor='name'>Name:</label>
                     <input id='name' type='text' onChange={handleChange} value={signUpFormState.name}/>
@@ -71,13 +78,16 @@ export const SignUp = () => {
                     
                     <button type="submit">Sign Up!</button>
                 </form>
+            </div>
         )
     }
 
     return (
-        <div className='sign-up-route-body'>
-            <div>Successfully Signed Up!</div>
-            <div>You may now sign in with your email and password!</div>
+        <div className="sign-in-wrapper">
+            <div className='sign-up-route-body'>
+                <div>Successfully Signed Up!</div>
+                <div style={{textAlign: "center", scale: "0.8"}}>You may now sign in with your email and password!</div>
+            </div>
         </div>
     )
 

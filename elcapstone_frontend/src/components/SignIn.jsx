@@ -34,7 +34,7 @@ export const SignIn = () => {
         const findUser = async () => {
             const response = await axios.get(`http://localhost:3001/users?email=${loginState.email}`)
             if (!response.data[0]) {
-                console.log("email not found")
+                alert("email not found")
                 return
             }
             console.log("email found")
@@ -46,7 +46,7 @@ export const SignIn = () => {
                 navigate('/profile')
                 return
             }
-            console.log("incorrect password")
+            alert("incorrect password")
             
         }
         findUser()
@@ -54,23 +54,32 @@ export const SignIn = () => {
 
     if (!loggedInUser) {
         return (
-                <form className='sign-in-route-body' onSubmit={handleLogin}>
-                    <label htmlFor='email'>Email:</label>
-                    <input id='email' type='email' onChange={handleChange} value={loginState.email}/>
-                
-                    <label htmlFor='password'>Password:</label>
-                    <input id='password' type='password' onChange={handleChange} value={loginState.password}/>
+            <div className="sign-in-wrapper">
+                <div className="sign-in-route-body">
+                    <form className='sign-in-form' onSubmit={handleLogin}>
+                        <label htmlFor='email'>Email:</label>
+                        <input id='email' type='email' onChange={handleChange} value={loginState.email}/>
                     
-                    <button type="submit">Login</button>
-
-                    <div>Don't have an account yet?</div>
-                    <button  onClick={() => navigate('/signup')}>Sign Up!</button>
-                </form>
+                        <label htmlFor='password'>Password:</label>
+                        <input id='password' type='password' onChange={handleChange} value={loginState.password}/>
+                        
+                        <button type="submit">Login</button>
+                    </form>
+                    <div className="sign-up-link">
+                        <div>Don't have an account yet?</div>
+                        <button  onClick={() => navigate('/signup')}>Sign Up!</button>
+                    </div> 
+                </div>
+            </div>
+           
+                
         )
     }
 
     return (
-        <>Logged in as {loggedInUser.name}</>
+        <div className="sign-in-wrapper">
+            <>Logged in as {loggedInUser.name}</>
+        </div>
     )
 
 }
