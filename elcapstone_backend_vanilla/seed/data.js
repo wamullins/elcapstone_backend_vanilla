@@ -52,9 +52,45 @@ const main = async () => {
             gradePB: "5.11d",
             password: "letmeinplease",
         }),
+        new User({
+            name: "Stefano Ghisolfi",
+            email: "climb@climbing.com",
+            gradePB: "9b+",
+            password: "letmeinplease",
+        }),
     ];
 
     const sendLogs = [
+        new SendLog({
+            routeID: climbMap.get("the dawn wall"),
+            userID: users[0]._id,
+            grade: "much harder than I can do",
+            description: "had a nice time checking it out from the ground",
+        }),
+        new SendLog({
+            routeID: climbMap.get("the dawn wall"),
+            userID: users[0]._id,
+            grade: "much harder than I can do",
+            description: "had a nice time checking it out from the ground",
+        }),
+        new SendLog({
+            routeID: climbMap.get("the dawn wall"),
+            userID: users[0]._id,
+            grade: "much harder than I can do",
+            description: "had a nice time checking it out from the ground",
+        }),
+        new SendLog({
+            routeID: climbMap.get("the dawn wall"),
+            userID: users[0]._id,
+            grade: "much harder than I can do",
+            description: "had a nice time checking it out from the ground",
+        }),
+        new SendLog({
+            routeID: climbMap.get("the dawn wall"),
+            userID: users[0]._id,
+            grade: "much harder than I can do",
+            description: "had a nice time checking it out from the ground",
+        }),
         new SendLog({
             routeID: climbMap.get("the dawn wall"),
             userID: users[0]._id,

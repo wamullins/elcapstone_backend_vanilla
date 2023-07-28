@@ -12,14 +12,25 @@ const addSendLog = async (req, res) => {
 };
 const getSendLogs = async (req, res) => {
     try {
-        const sendLogs = await SendLog.find({});
-        console.log(sendLogs);
-        return res.json(sendLogs);
+        if (req.query.userID) {
+            const sendLogs = await SendLog.find({ userID: req.query.userID });
+            if (!sendLogs) throw Error("no sends found");
+            return res.json(sendLogs);
+        } else if (req.query.routeID) {
+            const sendLogs = await SendLog.find({ routeID: req.query.routeID });
+            if (!sendLogs) throw Error("no sends found");
+            return res.json(sendLogs);
+        } else {
+            const sendLogs = await SendLog.find({});
+            console.log(sendLogs);
+            return res.json(sendLogs);
+        }
     } catch (e) {
         console.log(e);
         return res.send(e.message);
     }
 };
+
 const getSendLogByID = async (req, res) => {
     try {
         const sendLog = await SendLog.findById(req.params.id);
@@ -30,6 +41,7 @@ const getSendLogByID = async (req, res) => {
         return res.send(e.message);
     }
 };
+
 const deleteSendLogByID = async (req, res) => {
     try {
         const deletedSendLog = await SendLog.findByIdAndDelete(req.params.id);
