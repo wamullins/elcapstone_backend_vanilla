@@ -21,8 +21,11 @@ export const SignOut = () => {
    
 
     return (
-        <div className="sign-out-wrapper">
+        <>  
+            <div className="sign-out-wrapper"></div>
             <div className="sign-out-route">Logging Out {username}</div>
-        </div>
+        </>
+       
+        
     )
 }

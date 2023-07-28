@@ -32,29 +32,32 @@ export const SignIn = () => {
         e.preventDefault()
 
         const findUser = async () => {
+            // check email assocaited account exists in database
             const response = await axios.get(`http://localhost:3001/users?email=${loginState.email}`)
             if (!response.data[0]) {
                 alert("email not found")
                 return
             }
             console.log("email found")
-            console.log(response.data[0])
-            if (response.data[0].password === loginState.password) {
-                console.log(`logging in ${response.data[0].name}`)
-                setLoggedInUser(response.data[0])
-                setLoginState(default_input)
-                navigate('/profile')
+
+            // check the passwords against each other
+            if (response.data[0].password !== loginState.password) {
+                alert("incorrect password")
                 return
             }
-            alert("incorrect password")
-            
+
+            console.log(`logging in ${response.data[0].name}`)
+            setLoggedInUser(response.data[0])
+            setLoginState(default_input)
+            navigate('/profile')
         }
         findUser()
     }
 
     if (!loggedInUser) {
         return (
-            <div className="sign-in-wrapper">
+            <>
+                <div className="sign-in-wrapper"></div>
                 <div className="sign-in-route-body">
                     <form className='sign-in-form' onSubmit={handleLogin}>
                         <label htmlFor='email'>Email:</label>
@@ -67,19 +70,20 @@ export const SignIn = () => {
                     </form>
                     <div className="sign-up-link">
                         <div>Don't have an account yet?</div>
-                        <button  onClick={() => navigate('/signup')}>Sign Up!</button>
+                        <button  onClick={() => navigate('/signup')}>Sign Up</button>
                     </div> 
                 </div>
-            </div>
-           
-                
+            </>
         )
     }
 
     return (
-        <div className="sign-in-wrapper">
+        <>
+            <div className="sign-in-wrapper"></div>
             <>Logged in as {loggedInUser.name}</>
-        </div>
+        </>
+        
+       
     )
 
 }

@@ -1,15 +1,32 @@
-import { useContext } from "react"
+import { useState, useContext, useEffect } from "react"
+import axios from 'axios'
 import LoggedInContext from "../LoggedInContext"
-import { ProfileEdit } from "./ProfileEdit"
-import { SLEdit } from "./SLEdit"
+import { ProfileHeader } from "./ProfileHeader"
+import { ProfileSendLog } from "./ProfileSendLog"
+import AxiosActionContext from '../AxiosActionContext'
 
 export const Profile = () => {
     const { loggedInUser } = useContext(LoggedInContext)
+    const [ axiosAction, setAxiosAction ] = useState(false)
+    const [ sendLogs, setSendLogs ] = useState([])
 
-    // useEffect
+    useEffect(() => {
+        const getSendLogs = async () => {
+            const response = await axios.get(`http://localhost:3001/sendLogs?userID=${loggedInUser._id}`)
+            const data = response.data
+            setSendLogs(data)
+        }
+        if (!loggedInUser) {return}
+        getSendLogs()
+        
+    }, [axiosAction])
+
+    // after the axios action is done, it will trigger re renderes which will then trigger this to set it back to false
+    useEffect(() => {
+        setAxiosAction(false)
+    }, [sendLogs, loggedInUser])
 
     if (!loggedInUser) {
-
         return (
             <div className="profile-wrapper">
                 <div className="profile-route-body">No user logged In</div>
@@ -18,52 +35,18 @@ export const Profile = () => {
     }
 
     return (
-        <div className="profile-wrapper">
+        <AxiosActionContext.Provider value={{axiosAction, setAxiosAction}}>
+            <div className="profile-wrapper"></div>
             <div className="profile-route-body">
-                <div className="profile-header">
-                    <div style={{display: "flex", flexDirection: "column"}}>   
-                        <div style={{fontSize: "30px"}}>{loggedInUser.name}</div>
-                        <div>{loggedInUser.email}</div>
-                    </div>
-                    <button style={{textDecoration: "none", backgroundColor: "#ACA9A9", border: "none", fontSize: "20px", alignSelf: "flex-start"}}>(edit)</button>
+                <ProfileHeader />
+                <div style={{ fontSize: "30px", width: "80%", borderBottom: "1px solid black", textAlign: "center"}}>Send Logs</div>
+                <div className="send-log-grid">
+                    { sendLogs.map((log, idx) => (
+                        <ProfileSendLog key={idx} log={log}/>
+                    ))}
                 </div>
-            
-            
-                <div className="personal-best">Personal Best: {loggedInUser.gradePB}</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div><div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div><div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div><div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div><div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div><div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
-                <div>Welcome {loggedInUser.name}!</div>
             </div>
-        </div>
+        </AxiosActionContext.Provider>
        
     )
     

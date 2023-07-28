@@ -62,7 +62,8 @@ export const SignUp = () => {
 
     if (!successState) {
         return (
-            <div className="sign-in-wrapper">
+            <>
+                <div className="sign-in-wrapper"></div>
                 <form className='sign-up-route-body' onSubmit={handleSignUp}>
                     <label htmlFor='name'>Name:</label>
                     <input id='name' type='text' onChange={handleChange} value={signUpFormState.name}/>
@@ -76,9 +77,9 @@ export const SignUp = () => {
                     <label htmlFor='confirmPassword'>Confirm Password:</label>
                     <input id='confirmPassword' type='password' onChange={handleChange} value={signUpFormState.confirmPassword}/>
                     
-                    <button type="submit">Sign Up!</button>
+                    <button type="submit">Sign Up</button>
                 </form>
-            </div>
+            </>
         )
     }
 
