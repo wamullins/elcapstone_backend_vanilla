@@ -14,7 +14,6 @@ const sendLogSchema = new Schema(
         },
         grade: {
             type: String,
-            required: true,
         },
         description: {
             type: String,
