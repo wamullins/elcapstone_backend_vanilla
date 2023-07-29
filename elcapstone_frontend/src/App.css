@@ -32,7 +32,7 @@
 .sign-in-wrapper {
   height: 100%;
   width: 100%;
-  background-image: url('background_1.jpg');
+  background-image: url('background_2.jpg');
   background-size:cover;
   position: fixed;
 }
@@ -44,20 +44,21 @@
   left: 10%;
   z-index: 10;
   color: white;
-  width: 00px;
+  width: 600px;
   font-weight: 100;
 }
 
 .sign-in-form, .sign-up-route-body {
-  background-color: #c9a39c99;
+  background-color: #7a7a7ab7;
+  color: white;
   width: 100%;
   padding: 10px;
-  border-radius: 14px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  border: 1px solid black;
+  
 }
 
 .sign-in-route-body, .sign-up-route-body {
@@ -72,7 +73,7 @@
 }
 
 .sign-up-link {
-  background-color: #e7d7f350;
+  background-color: #f3ecd7a3;
   font-size: 16px;
   width: 60%;
   padding: 10px;
@@ -82,7 +83,6 @@
   justify-content: space-around;
   align-items: center;
   margin: 20px;
-  border: 1px solid black;
 }
 
 .sign-in-form > input,label, .sign-up-route-body > input,label {
@@ -114,7 +114,7 @@
 .profile-wrapper, .sign-out-wrapper {
   height: 100%;
   width: 100%;
-  background-image: url('background_2.jpg');
+  background-image: url('background_1.jpg');
   position: fixed;
   background-size: cover;
 }
@@ -135,7 +135,7 @@
 .profile-header {
   width: 90%;
   margin-top: 2%;
-  background-color: #aca9a9a0;
+  background-color: #aca9a9c5;
   border-radius: 8px;
   padding: 16px;
   display: flex;
@@ -151,7 +151,7 @@
   background-color: #96B3BA;
 }
 
-.send-log-div {
+.profile-send-log-div {
   display: flex;
   justify-content: space-between;
   padding: 10px;
@@ -161,11 +161,125 @@
   overflow-wrap: break-word;
 }
 
-.send-log-grid {
+.profile-send-log-grid {
   display: grid;
   justify-content: center;
   grid-template-columns: 40% 40%;
 }
 
+/* routes and features menus*/
 
+.object-menu {
+  position:fixed;
+  bottom: 10%;
+  left: 10%;
+  z-index: 10;
+  color: white;
+  width: 20%;
+}
 
+.object-list {
+  min-width: 220px;
+  height: 25vh;
+  background-color: black;
+  overflow-y: scroll;
+  border: 4px solid #242424;
+  border-radius: 8px;
+}
+
+.object-menu-title {
+  font-size: 70px;
+  font-weight: 100;
+}
+
+.object-list-item {
+  background-color: #242424;
+  padding: 10px;
+  margin: 10px;
+}
+
+/* route and features pages */
+
+.object-picture-list {
+  position:fixed;
+  top: 10%;
+  left: 5%;
+  z-index: 9;
+  width: 25%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.object-picture-list > img {
+  border-radius: 8px;
+  margin: 2%;
+}
+
+.object-div {
+  position:fixed;
+  top: 10%;
+  right: 5%;
+  z-index: 10;
+  width: 25%;
+  background-color: #24242456;
+  border-radius: 8px;
+  padding: 1%;
+}
+
+.object-title {
+  font-size: 7vmin;;
+  font-weight: 100;
+  color: white;
+}
+
+.feature-info-div, .route-info-div {
+  background-color: #96b3bae0;
+  height: 40vh;
+  padding: 3%;
+  border-radius: 8px;
+}
+
+.route-info-div {
+  height: 25vh;
+}
+
+/* HUD send log styling */
+
+.route-log-title {
+  color: white;
+  font-weight: 100;
+  font-size: 4vmin;
+}
+
+.route-send-logs {
+  height: 25vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  background-color: #24242456;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.submit-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #a1ba96ad;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.send-log-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px;
+  background-color: #a1ba96ad;
+  display: flex;
+  overflow-wrap: break-word;
+}

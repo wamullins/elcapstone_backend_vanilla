@@ -57,14 +57,14 @@ export const ProfileSendLog = ({ log }) => {
     return ( 
         <>
             {editMode ? 
-                <div className="send-log-div">
-                    <div style={{display: "flex", flexDirection: "column", width:"80%"}}>
+                <div className="profile-send-log-div">
+                    <div style={{display: "flex", flexDirection: "column", width:"80%", alignItems: "flex-start"}}>
                         {route ? <div style={{width: "60%", margin:"5px", fontSize:"24px", borderBottom: "1px solid black", }}>{route.name}</div> : <div>loading</div>}
                         <label htmlFor='grade'>Grade:</label>
-                        <input id='grade' type='text' onChange={handleChange} value={updateState.grade}/>
+                        <input id='grade' type='text' onChange={handleChange} value={updateState.grade} style={{width: "100%"}}/>
 
                         <label htmlFor='description'>Description:</label>
-                        <textarea id='description' onChange={handleChange} value={updateState.description}/>
+                        <textarea id='description' onChange={handleChange} value={updateState.description} style={{width: "100%"}}/>
                 
                         <button onClick={handleUpdate} style={{textDecoration: "none", fontFamily: "Montserrat, sansSerif", background: "transparent", border: "none", fontSize: "20px" ,margin: '0.5%'}}>Update</button>
                     </div>
@@ -74,7 +74,7 @@ export const ProfileSendLog = ({ log }) => {
                     </div>
                 </div> 
                 : 
-                <div className="send-log-div">
+                <div className="profile-send-log-div">
                     <div style={{display: "flex", flexDirection: "column", width:"80%"}}>
                         {route ? <div style={{width: "60%", margin:"5px", fontSize:"24px", borderBottom: "1px solid black", }}>{route.name}</div> : <div>loading</div>}
                         <div style={{margin:"10px"}}>Proposed Grade: {log.grade}</div>

@@ -1,22 +1,26 @@
 import { NavLink } from 'react-router-dom'
 import { useContext } from 'react'
 import LoggedInContext from '../LoggedInContext'
+import SelectedObjectContext from '../SelectedObjectContext'
 
 export const Nav = () => {
 
     const { loggedInUser, setLoggedInUser } = useContext(LoggedInContext)
+    const { setSelectedObject }= useContext(SelectedObjectContext)
+
+
 
     return (
         <div className="nav-links">
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/climbs" >Routes</NavLink>
-            <NavLink to="/features">Features</NavLink>
+            <NavLink to="/" onClick={()=>setSelectedObject(null)}>Home</NavLink>
+            <NavLink to="/climbs" onClick={()=>setSelectedObject(null)}>Routes</NavLink>
+            <NavLink to="/features" onClick={()=>setSelectedObject(null)}>Features</NavLink>
             { loggedInUser ? 
                 <>
-                    <NavLink to="/profile">{loggedInUser.name}</NavLink>
-                    <NavLink to="/signout" className="toggle-login">Sign Out</NavLink>
+                    <NavLink to="/profile" onClick={()=>setSelectedObject(null)}>{loggedInUser.name}</NavLink>
+                    <NavLink to="/signout" className="toggle-login" onClick={()=>setSelectedObject(null)}>Sign Out</NavLink>
                 </> :
-                <NavLink to="/signin" className="toggle-login">Sign In</NavLink>
+                <NavLink to="/signin" className="toggle-login" onClick={()=>setSelectedObject(null)}>Sign In</NavLink>
             }
 
 

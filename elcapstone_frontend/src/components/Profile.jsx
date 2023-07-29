@@ -1,13 +1,14 @@
 import { useState, useContext, useEffect } from "react"
 import axios from 'axios'
 import LoggedInContext from "../LoggedInContext"
+import AxiosActionContext from '../AxiosActionContext'
 import { ProfileHeader } from "./ProfileHeader"
 import { ProfileSendLog } from "./ProfileSendLog"
-import AxiosActionContext from '../AxiosActionContext'
+
 
 export const Profile = () => {
     const { loggedInUser } = useContext(LoggedInContext)
-    const [ axiosAction, setAxiosAction ] = useState(false)
+    const { axiosAction, setAxiosAction } = useContext(AxiosActionContext)
     const [ sendLogs, setSendLogs ] = useState([])
 
     useEffect(() => {
@@ -35,18 +36,18 @@ export const Profile = () => {
     }
 
     return (
-        <AxiosActionContext.Provider value={{axiosAction, setAxiosAction}}>
+        <>
             <div className="profile-wrapper"></div>
             <div className="profile-route-body">
                 <ProfileHeader />
                 <div style={{ fontSize: "30px", width: "80%", borderBottom: "1px solid black", textAlign: "center"}}>Send Logs</div>
-                <div className="send-log-grid">
+                <div className="profile-send-log-grid">
                     { sendLogs.map((log, idx) => (
                         <ProfileSendLog key={idx} log={log}/>
                     ))}
                 </div>
             </div>
-        </AxiosActionContext.Provider>
+        </>
        
     )
     
