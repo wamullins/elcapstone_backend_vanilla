@@ -11,6 +11,7 @@ export const HUD = () => {
     const { selectedObject, setSelectedObject } = useContext(SelectedObjectContext)
 
     useEffect(() => {
+        if (location ==="/") {return}
 
         const getCollection = async () => {
             const response = await axios.get(`http://localhost:3001${location}`)

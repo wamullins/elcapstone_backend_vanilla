@@ -2,25 +2,36 @@ import { NavLink } from 'react-router-dom'
 import { useContext } from 'react'
 import LoggedInContext from '../LoggedInContext'
 import SelectedObjectContext from '../SelectedObjectContext'
+import CameraPositionContext from '../CameraPositionContext'
 
 export const Nav = () => {
 
-    const { loggedInUser, setLoggedInUser } = useContext(LoggedInContext)
+    const { loggedInUser } = useContext(LoggedInContext)
     const { setSelectedObject }= useContext(SelectedObjectContext)
+    const { setCameraPosition } = useContext(CameraPositionContext)
 
+    const defaultCamera = {
+        position: [0,0,1],
+        target: [0,0,0],
+    }
+
+    const handleClick = () => {
+        setSelectedObject(null)
+        setCameraPosition(defaultCamera)
+    }
 
 
     return (
         <div className="nav-links">
-            <NavLink to="/" onClick={()=>setSelectedObject(null)}>Home</NavLink>
-            <NavLink to="/climbs" onClick={()=>setSelectedObject(null)}>Routes</NavLink>
-            <NavLink to="/features" onClick={()=>setSelectedObject(null)}>Features</NavLink>
+            <NavLink to="/" onClick={handleClick}>Home</NavLink>
+            <NavLink to="/climbs" onClick={handleClick}>Routes</NavLink>
+            <NavLink to="/features" onClick={handleClick}>Features</NavLink>
             { loggedInUser ? 
                 <>
-                    <NavLink to="/profile" onClick={()=>setSelectedObject(null)}>{loggedInUser.name}</NavLink>
-                    <NavLink to="/signout" className="toggle-login" onClick={()=>setSelectedObject(null)}>Sign Out</NavLink>
+                    <NavLink to="/profile" onClick={handleClick}>{loggedInUser.name}</NavLink>
+                    <NavLink to="/signout" className="toggle-login" onClick={handleClick}>Sign Out</NavLink>
                 </> :
-                <NavLink to="/signin" className="toggle-login" onClick={()=>setSelectedObject(null)}>Sign In</NavLink>
+                <NavLink to="/signin" className="toggle-login" onClick={handleClick}>Sign In</NavLink>
             }
 
 
