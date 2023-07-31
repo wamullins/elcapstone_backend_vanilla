@@ -26,6 +26,12 @@ const climbSchema = new Schema(
         images: {
             type: [],
         },
+        camera: {
+            type: {},
+        },
+        points: {
+            type: [],
+        },
     },
     { timestamps: true }
 );

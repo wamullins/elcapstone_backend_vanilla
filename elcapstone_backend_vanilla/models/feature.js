@@ -17,6 +17,12 @@ const featureSchema = new Schema(
         images: {
             type: [],
         },
+        camera: {
+            type: {},
+        },
+        highlight: {
+            type: {},
+        },
     },
     { timestamps: true }
 );
