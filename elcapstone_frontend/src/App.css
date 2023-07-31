@@ -157,12 +157,13 @@
   padding: 10px;
   margin: 20px;
   background-color: #a1ba96ad;
-  display: flex;
   overflow-wrap: break-word;
+  border-radius: 8px;
 }
 
 .profile-send-log-grid {
   display: grid;
+  width: 100%;
   justify-content: center;
   grid-template-columns: 40% 40%;
 }
@@ -239,6 +240,7 @@
   height: 40vh;
   padding: 3%;
   border-radius: 8px;
+  overflow-y: scroll;
 }
 
 .route-info-div {
@@ -279,7 +281,21 @@
   border-radius: 8px;
   padding: 10px;
   margin: 10px;
-  background-color: #a1ba96ad;
+  background-color: hsla(102, 21%, 66%, 0.678);
   display: flex;
   overflow-wrap: break-word;
 }
+
+/* Clock */
+
+.clock-div {
+  position: fixed;
+  z-index: 10;
+  bottom: 10%;
+  right: 5%;
+  display: flex;
+  justify-content: center;
+  background-color: #645c5cb7;;
+  width: 10%;
+}
+

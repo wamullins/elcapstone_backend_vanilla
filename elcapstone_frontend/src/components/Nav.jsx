@@ -9,9 +9,9 @@ export const Nav = () => {
     const { loggedInUser } = useContext(LoggedInContext)
     const { setSelectedObject }= useContext(SelectedObjectContext)
     const { setCameraPosition } = useContext(CameraPositionContext)
-
+ 
     const defaultCamera = {
-        position: [0,0,1],
+        position: [0,0,7],
         target: [0,0,0],
     }
 
@@ -19,7 +19,6 @@ export const Nav = () => {
         setSelectedObject(null)
         setCameraPosition(defaultCamera)
     }
-
 
     return (
         <div className="nav-links">

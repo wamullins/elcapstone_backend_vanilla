@@ -3,29 +3,38 @@ import { CameraControls, Box } from "@react-three/drei"
 import { useLoader } from '@react-three/fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import CameraPositionContext from '../CameraPositionContext'
+import SelectedObjectContext from '../SelectedObjectContext'
+import { ObjectHighlight } from './ObjectHighlight'
+
 
 export const ElCapScene = () => {
 
     const gltf = useLoader(GLTFLoader, '/el_capitan/scene.gltf')
-    const { cameraPosition } = useContext(CameraPositionContext)
+    const { cameraPosition, setCameraPosition } = useContext(CameraPositionContext)
+    const { selectedObject } = useContext(SelectedObjectContext)
     const cameraControlsRef = useRef()
     
     // whenever the cameraPositionContext is changed, this will adjust the camera accordingly
     useEffect(() => {
-        console.log(...cameraPosition.position)
         cameraControlsRef.current?.setPosition(cameraPosition.position[0], cameraPosition.position[1], cameraPosition.position[2], true)
         cameraControlsRef.current?.setTarget(cameraPosition.target[0], cameraPosition.target[1], cameraPosition.target[2], true)
         
     }, [cameraPosition])
 
 
+    useEffect(() => {
+        if (selectedObject) {
+            console.log(`settng camera`)
+            console.log(selectedObject.camera)
+            setCameraPosition(selectedObject.camera)
+        }
+    },[selectedObject])
+
 
     return (
         <>
-            {/* <Box position={[0,0,0]} args={[2,2,2]}>
-                <meshMatcapMaterial Material color={"#565264"}/>
-            </Box> */}
-            <primitive object={gltf.scene} rotation={[ 0, -Math.PI/3, 0]}/>
+            <primitive object={gltf.scene} rotation={[ 0, -Math.PI/3, 0]} scale={7}/>
+            <ObjectHighlight />
             <CameraControls
                 ref={cameraControlsRef}
                 enabled= {true}

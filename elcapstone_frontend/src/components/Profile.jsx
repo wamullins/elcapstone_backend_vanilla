@@ -40,7 +40,7 @@ export const Profile = () => {
             <div className="profile-wrapper"></div>
             <div className="profile-route-body">
                 <ProfileHeader />
-                <div style={{ fontSize: "30px", width: "80%", borderBottom: "1px solid black", textAlign: "center"}}>Send Logs</div>
+                <div style={{ fontSize: "30px", width: "80%", borderBottom: "1px solid black", textAlign: "center", paddingBottom: "8px"}}>Send Logs</div>
                 <div className="profile-send-log-grid">
                     { sendLogs.map((log, idx) => (
                         <ProfileSendLog key={idx} log={log}/>

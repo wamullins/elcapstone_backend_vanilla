@@ -1,3 +1,3 @@
 import React from 'react'
-const AxiosActionContext = React.createContext()
-export default AxiosActionContext
+const CameraPositionContext = React.createContext()
+export default CameraPositionContext
