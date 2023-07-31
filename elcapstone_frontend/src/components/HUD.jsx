@@ -13,8 +13,9 @@ export const HUD = () => {
     const { selectedObject, setSelectedObject } = useContext(SelectedObjectContext)
 
     useEffect(() => {
+        setCollection(null)
+        
         if (location ==="/") {
-            setCollection(null)
             return
         }
 
