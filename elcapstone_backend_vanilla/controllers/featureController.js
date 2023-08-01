@@ -12,9 +12,15 @@ const addFeature = async (req, res) => {
 };
 const getFeatures = async (req, res) => {
     try {
-        const Features = await Feature.find({});
-        console.log(Features);
-        return res.json(Features);
+        if (req.query.climbID) {
+            const features = await Feature.find({ climbID: req.query.climbID });
+            if (!features) throw Error("features not found");
+            return res.json(features);
+        } else {
+            const Features = await Feature.find({});
+            console.log(Features);
+            return res.json(Features);
+        }
     } catch (e) {
         console.log(e);
         return res.send(e.message);

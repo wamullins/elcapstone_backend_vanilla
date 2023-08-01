@@ -6,7 +6,7 @@ const featureSchema = new Schema(
             type: String,
             required: true,
         },
-        climbId: {
+        climbID: {
             type: Schema.Types.ObjectId,
             ref: "Climb",
         },
