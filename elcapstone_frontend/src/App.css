@@ -175,6 +175,7 @@
   bottom: 10%;
   left: 10%;
   z-index: 10;
+  /* color: #f4ddbb; */
   color: white;
   width: 20%;
 }
@@ -249,10 +250,11 @@
 
 /* HUD send log styling */
 
-.route-log-title {
+.route-sec-title {
   color: white;
   font-weight: 100;
-  font-size: 4vmin;
+  font-size: 3vmin;
+  margin-top: 5px;
 }
 
 .route-send-logs {
@@ -264,6 +266,21 @@
   border-radius: 8px;
   padding: 10px;
 }
+
+.assoc-feat-list {
+  background-color: #24242456;
+  height: 5vh;
+  padding: 3%;
+  border-radius: 8px;
+  overflow-y: scroll;
+}
+
+.assoc-feat {
+  background-color: #fbaa48ad;
+  padding: 3%;
+  border-radius: 8px;
+}
+
 
 .submit-div {
   display: flex;
@@ -281,10 +298,12 @@
   border-radius: 8px;
   padding: 10px;
   margin: 10px;
-  background-color: hsla(102, 21%, 66%, 0.678);
+  background-color: #a1bb96ad;
   display: flex;
   overflow-wrap: break-word;
 }
+
+
 
 /* Clock */
 

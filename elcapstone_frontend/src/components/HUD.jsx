@@ -4,6 +4,7 @@ import axios from 'axios'
 import SelectedObjectContext from "../SelectedObjectContext"
 import CollectionContext from "../CollectionContext"
 import { SendLogList } from "./SendLogList"
+import { FeatureList } from "./FeatureList"
 import { Clock } from './Clock'
 
 export const HUD = () => {
@@ -14,7 +15,7 @@ export const HUD = () => {
 
     useEffect(() => {
         setCollection(null)
-        
+
         if (location ==="/") {
             return
         }
@@ -72,10 +73,12 @@ export const HUD = () => {
                         <div className="route-info-div">
                             <div style={{width: "50%", padding:"1%", borderTop: "1px solid black"}}>Grade: {selectedObject.grade} </div>
                             <div style={{width: "50%", padding:"1%"}}>Pitches: {selectedObject.pitches} </div>
-                            <div style={{width: "50%", padding:"1%", borderBottom:"1px solid black"}}>Length: {selectedObject.length} </div>
+                            <div style={{width: "50%", padding:"1%", borderBottom:"1px solid black"}}>Length: {selectedObject.length}m </div>
                             <div style={{padding: "1%"}}>{selectedObject.description}</div>
                         </div>
-                        <div className="route-log-title">Send Logs:</div>
+                        <div className="route-sec-title">features on the route:</div>
+                        <FeatureList/>
+                        <div className="route-sec-title">send logs:</div>
                         <SendLogList/>
                     </>
                     

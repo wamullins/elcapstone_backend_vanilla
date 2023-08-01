@@ -4,8 +4,8 @@ import CameraPositionContext from "../CameraPositionContext"
 export const Clock = () => { 
 
     const  moveHereLookThere = {
-        position: [-3, -1.4, 3.5],
-        target: [-0.1, 0.1, 0.85],
+        position: [-4.4, 0, 0.3],
+        target: [-0.97, 0.74, -0.3],
     }
 
     const { setCameraPosition } = useContext(CameraPositionContext)

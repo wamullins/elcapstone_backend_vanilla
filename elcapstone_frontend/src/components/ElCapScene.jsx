@@ -39,9 +39,14 @@ export const ElCapScene = () => {
                 ref={cameraControlsRef}
                 enabled= {true}
                 verticalDragToForward={false}
+                enableTransition
+                maxDistance={8}
+                minDistance={2}
+                maxPolarAngle={3*Math.PI/4}
+                // colliderMeshes={[primitive]}
             />
             <hemisphereLight intensity={1}/>
-            {/* <spotLight position={[0,2,10]} intensity={1} /> */}
+            {/* <spotLight position={[0,7,0]} intensity={1} /> */}
         </>
     )
 }

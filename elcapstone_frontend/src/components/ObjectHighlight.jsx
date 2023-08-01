@@ -1,8 +1,9 @@
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useState, useEffect, useRef } from 'react'
 import CollectionContext from '../CollectionContext'
 import SelectedObjectContext from '../SelectedObjectContext'
-import { Box, Line, Cylinder } from "@react-three/drei"
+import { Box, Line, Cylinder, Octahedron } from "@react-three/drei"
 import { useLocation} from "react-router-dom"
+import { useFrame } from "@react-three/fiber"
 
 export const ObjectHighlight = () => { 
 
@@ -19,8 +20,30 @@ export const ObjectHighlight = () => {
             setInvisible('')
             return
         }
+        setHovered('')
         setInvisible(selectedObject.name)
     },[selectedObject])
+
+
+    // for the octahedrons
+    // taken from here https://onion2k.github.io/r3f-by-example/examples/hooks/rotating-cube/
+
+    const Oct = ({ idx, item}) => {
+        const octRef = useRef();
+
+        useFrame(() => {
+            octRef.current.rotation.y += 0.01;
+        })
+
+        return (
+            <Octahedron ref={octRef} args={[0.1]}position={item.highlight.position} onClick={()=> setSelectedObject(item)} onPointerOver={() => setHovered(idx)} onPointerOut={() => setHovered('')}> 
+                <meshMatcapMaterial transparent color={hovered === idx ? "white": "green"} opacity={invisible=== item.name ? 0.01 : 0.6}/>
+            </Octahedron> 
+        )
+    }
+
+
+
 
     if (!collection) {
         return <></>
@@ -30,13 +53,9 @@ export const ObjectHighlight = () => {
         return (
             <> 
                 {collection.map((item, idx) => (
-                    <Cylinder key={idx} position={item.highlight.position} args={item.highlight.args} rotation={item.highlight.rotation} onClick={()=> setSelectedObject(item)} onPointerOver={() => setHovered(idx)} onPointerOut={() => setHovered('')} > 
-                        <meshMatcapMaterial transparent color={hovered === idx ? "white": "#ffb547"} opacity={invisible=== item.name ? 0.01 : 0.5}/>
-                    </Cylinder>  
+                    <Oct key={idx} idx={idx} item={item} /> 
                 ))} 
-                    {/* <Cylinder args= {[0.3, 0.4, 0.2]} position={[1.4, 0.2, 0.75]} rotation={[Math.PI / 2, 0, 0]}> 
-                        <meshStandardMaterial color={"red"} transparent opacity={0.2}/>
-                    </Cylinder>   */}
+               
             </>
         )
     } 
@@ -54,7 +73,7 @@ export const ObjectHighlight = () => {
             ))}
 
             
-            {/* <Line points={[[0.99, 1.45, 0.88],[1, 1.22, 0.95],[0.84, 1.28, 1.02],[0.76, 0.8, 1.06],[0.7, 0.42, 1.12],[0.65, 0.02, 1.17],[0.68, -0.04, 1.16],[0.72, 0.06, 1.12],[0.82, 0.06, 1.06],[0.92, -0.1, 1.02],[0.75, -0.32, 1.11],[0.7, -0.72, 1.2],[0.78, -1.08, 1.28],[0.87, -1.1, 1.35],]} color="red" lineWidth={15} dashed={false} transparent opacity={0.5}/> */}
+            {/* <Line points={[[-0.59, 1.79, -0.35],[-0.73, 1.55, -0.45],[-0.84, 1.29, -0.38],[-0.87, 1.25, -0.34],[-1, 0.69, -0.16],[-0.97, 0.74, -0.3],[-1.05, 0.22, -0.22],[-1.1, 0.02, -0.3],[-1.14, -0.02, -0.3],]} color="red" lineWidth={15} dashed={false} transparent opacity={0.5}/> */}
 
 
             {/* <Box position={[-0.1, 0.1, 0.85]} args={[.1,.1,.1]}>
