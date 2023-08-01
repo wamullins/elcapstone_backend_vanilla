@@ -41,7 +41,7 @@ export const ElCapScene = () => {
                 verticalDragToForward={false}
                 enableTransition
                 maxDistance={8}
-                minDistance={2}
+                minDistance={1}
                 maxPolarAngle={3*Math.PI/4}
                 // colliderMeshes={[primitive]}
             />

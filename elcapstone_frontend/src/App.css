@@ -245,7 +245,7 @@
 }
 
 .route-info-div {
-  height: 25vh;
+  height: 22vh;
 }
 
 /* HUD send log styling */
@@ -258,7 +258,7 @@
 }
 
 .route-send-logs {
-  height: 25vh;
+  height: 22vh;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
@@ -269,7 +269,7 @@
 
 .assoc-feat-list {
   background-color: #24242456;
-  height: 5vh;
+  max-height: 12vh;
   padding: 3%;
   border-radius: 8px;
   overflow-y: scroll;
@@ -279,6 +279,7 @@
   background-color: #fbaa48ad;
   padding: 3%;
   border-radius: 8px;
+  margin: 1%;
 }
 
 

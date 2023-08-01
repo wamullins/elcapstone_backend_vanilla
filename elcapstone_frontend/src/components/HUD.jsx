@@ -34,7 +34,6 @@ export const HUD = () => {
         return (
             <>
                 <div className="home-title">El Capitan</div>
-                <Clock/>
             </>
             
         )
@@ -54,7 +53,7 @@ export const HUD = () => {
                     : <> Loading objects </>
                 }
             </div>
-            <Clock/>
+            {/* <Clock/> */}
         </div>
         )
     }
@@ -86,7 +85,7 @@ export const HUD = () => {
                     <div className="feature-info-div">{selectedObject.description}</div>
                 }
             </div>
-            <Clock/>
+            {/* <Clock/> */}
 
         </>
     )
